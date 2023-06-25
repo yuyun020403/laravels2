@@ -32,7 +32,36 @@ Route::prefix('toko')->group(function(){
     Route::get('/about',
     [TokoController::class,'about']);
 
+
+    Route::group(['middleware' => ['auth']], function(){
+
+        Route::get('/admin',
+        [TokoController::class,'admin'])->name('produk.admin');
+    
+    });
+    
+    
+   
+    Route::get('/create',
+    [TokoController::class,'create'])->name('produk.create');
+
+    Route::post('/',
+    [TokoController::class,'store'])->name('produk.store');
+
+    Route::get('/{product}/edit',
+    [TokoController::class,'edit'])->name('produk.edit');
+
+    Route::delete('/{product}',
+    [TokoController::class,'destroy'])->name('produk.destroy');
+
+    Route::put('/{product}',
+    [TokoController::class,'update'])->name('produk.update');
+    
 });    
 
     
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

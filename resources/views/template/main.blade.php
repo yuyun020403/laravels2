@@ -33,10 +33,20 @@
           </ul>
         </li> -->
       </ul>
+      
+      &nbsp;
+
+      @if (auth()->check() && auth()->user()->role != 'pelanggan')
+
+      <a href="" class="btn btn-primary">ADMIN</a>
+
+      @else
       <form class="d-flex">
         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-light" type="submit">Search</button>
       </form>
+      @endif
+
     </div>
   </div>
 </nav>
